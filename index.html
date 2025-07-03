@@ -4,12 +4,11 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Academia de Educação Financeira</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
 </head>
 <body>
   <div class="container">
-    <!-- Painel de Estatísticas -->
     <div id="statsPanel" class="stats-panel">
       <div>Total de jogos jogados: <span id="total-games">0</span></div>
       <div>Total de acertos: <span id="total-hits">0</span></div>
@@ -80,7 +79,7 @@
         </div>
       </div>
     </div>
-    <!-- Loja a partir de R$10 -->
+    <!-- Jogos -->
     <div id="shopGame" class="game-container">
       <div class="nav-buttons">
         <button class="nav-button" onclick="showScreen('home')">Início</button>
@@ -103,7 +102,6 @@
       </div>
       <div id="resultMessage" class="result-message" style="display: none;"></div>
     </div>
-    <!-- Simulação 50-30-20 -->
     <div id="budgetGame" class="game-container">
       <div class="nav-buttons">
         <button class="nav-button" onclick="showScreen('home')">Início</button>
@@ -113,7 +111,6 @@
       <input type="number" id="rendaInput" class="simulador-input" placeholder="Digite sua renda mensal" oninput="calcularSimulacao()" />
       <div class="simulador-result" id="resultadoSimulador"></div>
     </div>
-    <!-- Desafio das Prioridades -->
     <div id="prioridadesGame" class="game-container">
       <div class="nav-buttons">
         <button class="nav-button" onclick="showScreen('home')">Início</button>
@@ -138,7 +135,6 @@
       </div>
       <div id="prioridades-feedback" class="result-message" style="display:none"></div>
     </div>
-    <!-- Quiz de Verdadeiro ou Falso -->
     <div id="quizGame" class="game-container">
       <div class="nav-buttons">
         <button class="nav-button" onclick="showScreen('home')">Início</button>
@@ -153,7 +149,6 @@
       <div id="quiz-feedback" class="result-message" style="display:none"></div>
       <div class="result-message" id="quiz-score" style="display:none"></div>
     </div>
-    <!-- Quiz Rápido -->
     <div id="quizrapidoGame" class="game-container">
       <div class="nav-buttons">
         <button class="nav-button" onclick="showScreen('home')">Início</button>
@@ -169,7 +164,6 @@
       <div id="quizrapido-feedback" class="result-message" style="display:none"></div>
       <div class="result-message" id="quizrapido-score" style="display:none"></div>
     </div>
-    <!-- Quem Sou Eu -->
     <div id="quemGame" class="game-container">
       <div class="nav-buttons">
         <button class="nav-button" onclick="showScreen('home')">Início</button>
@@ -184,7 +178,6 @@
       <div id="quem-feedback" class="result-message" style="display:none"></div>
       <div class="result-message" id="quem-score" style="display:none"></div>
     </div>
-    <!-- Arrume a Sequência -->
     <div id="sequenciaGame" class="game-container">
       <div class="nav-buttons">
         <button class="nav-button" onclick="showScreen('home')">Início</button>
@@ -198,7 +191,6 @@
       </div>
       <div id="sequencia-feedback" class="result-message" style="display:none"></div>
     </div>
-    <!-- Corta Despesas -->
     <div id="cortaGame" class="game-container">
       <div class="nav-buttons">
         <button class="nav-button" onclick="showScreen('home')">Início</button>
@@ -212,7 +204,6 @@
       </div>
       <div id="corta-feedback" class="result-message" style="display:none"></div>
     </div>
-    <!-- Jogo dos Juros -->
     <div id="jurosGame" class="game-container">
       <div class="nav-buttons">
         <button class="nav-button" onclick="showScreen('home')">Início</button>
@@ -228,7 +219,6 @@
       <div id="juros-feedback" class="result-message" style="display:none"></div>
       <div id="juros-orientacao" class="result-message" style="display:none"></div>
     </div>
-    <!-- Multiplique seu Dinheiro -->
     <div id="multiplicaGame" class="game-container">
       <div class="nav-buttons">
         <button class="nav-button" onclick="showScreen('home')">Início</button>
@@ -244,7 +234,6 @@
       </div>
       <div id="multiplica-feedback" class="result-message" style="display:none"></div>
     </div>
-    <!-- Desafio das Moedas -->
     <div id="moedasGame" class="game-container">
       <div class="nav-buttons">
         <button class="nav-button" onclick="showScreen('home')">Início</button>
@@ -258,7 +247,6 @@
       </div>
       <div id="moedas-feedback" class="result-message" style="display:none"></div>
     </div>
-    <!-- Monte seu Orçamento -->
     <div id="orcamentoGame" class="game-container">
       <div class="nav-buttons">
         <button class="nav-button" onclick="showScreen('home')">Início</button>
