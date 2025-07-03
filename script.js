@@ -1,4 +1,3 @@
-// ====== NAVEGAÇÃO ENTRE TELAS ======
 function showScreen(screen) {
   document.querySelectorAll('.game-container').forEach(el => el.classList.remove('active'));
   if (screen === 'home') document.getElementById('homeScreen').classList.add('active');
