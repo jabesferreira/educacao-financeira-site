@@ -64,28 +64,17 @@ h3 {
   max-width: 900px;
 }
 .game-card {
-  margin: 0; /* Remove margin para evitar espaço extra vertical */
-}
-
-/* Responsivo: em telas pequenas, uma coluna só */
-@media (max-width: 700px) {
-  .game-grid {
-    grid-template-columns: 1fr;
-    gap: 16px 0;
-  }
-}
-.game-card {
   background: #f7fafd;
   border: 1.5px solid #dbe9f5;
   border-radius: 16px;
   padding: 24px 10px 20px 10px;
-  margin: 18px auto;
   text-align: center;
   cursor: pointer;
   transition: 0.18s;
   box-shadow: 0 2px 12px rgba(72,146,198,0.06);
-  min-width: 230px;
+  min-width: 0;
   max-width: 420px;
+  margin: 0; /* Remove o margin vertical */
   display: block;
 }
 .game-card:hover {
@@ -128,11 +117,36 @@ h3 {
 .nav-button:first-child {
   margin-right: auto;
 }
+@media (max-width: 700px) {
+  .game-grid {
+    grid-template-columns: 1fr;
+    gap: 16px 0;
+  }
+}
 @media (max-width: 600px) {
+  .container {
+    padding: 10px 2vw 10px 2vw;
+    border-radius: 10px;
+  }
   .nav-buttons {
-    flex-direction: row;
-    justify-content: space-between;
+    gap: 8px;
     margin-bottom: 12px;
+  }
+  h1 {
+    font-size: 1.25rem;
+  }
+  h2 {
+    font-size: 1rem;
+  }
+  .game-grid {
+    grid-template-columns: 1fr;
+    gap: 10px 0;
+  }
+  .game-card {
+    min-width: 90vw;
+    max-width: 98vw;
+    padding: 14px 3px 10px 3px;
+    font-size:1rem;
   }
 }
 .game-container {
@@ -149,6 +163,7 @@ h3 {
 .active {
   display: block;
 }
+/* Restante do seu CSS igual ao anterior */
 .info-box {
   display: flex;
   justify-content: center;
@@ -464,6 +479,10 @@ h3 {
   }
   h2 {
     font-size: 1rem;
+  }
+  .game-grid {
+    grid-template-columns: 1fr;
+    gap: 10px 0;
   }
   .game-card {
     min-width: 90vw;
