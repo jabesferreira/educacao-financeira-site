@@ -66,7 +66,6 @@ function startGame(game) {
 }
 
 // ============= NOVOS JOGOS ==============
-// ... (RESTANTE DO SEU SCRIPT IGUAL, como está) ...
 
 // -- Quiz Rápido --
 const quizRapidoQuestoes = [
