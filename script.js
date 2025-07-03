@@ -1,33 +1,6 @@
-// Estatísticas globais
+// ----------- NAVEGAÇÃO ENTRE TELAS -------------
 function showScreen(screen) {
-  document.querySelectorAll('.game-container').forEach(el => el.classList.remove('active'));
-  if(screen === 'home') {
-    document.getElementById('homeScreen').classList.add('active');
-  } else if(screen === 'quizrapido') {
-    document.getElementById('quizRapidoGame').classList.add('active');
-    startQuizRapido();
-  }
-  // repita para os outros jogos...
-}
-
-function startGame(game) {
-  showScreen(game);
-}let stats = { jogos: 0, acertos: 0 };
-function atualizaStats(acertos = 0) {
-  stats.jogos++;
-  stats.acertos += acertos;
-  document.getElementById('total-games').textContent = stats.jogos;
-  document.getElementById('total-hits').textContent = stats.acertos;
-}
-
-// Funções de feedback sonoro/visual
-function playAcerto() { document.getElementById('audio-certo').play(); }
-function playErro() { document.getElementById('audio-errado').play(); }
-function playClick() { document.getElementById('audio-click').play(); }
-
-// ---------- CONTROLE DE TELAS E INÍCIO DE JOGOS ----------
-function showScreen(screen) {
-  // Oculta todas as telas
+  // Oculta todos os jogos
   document.querySelectorAll('.game-container').forEach(el => el.classList.remove('active'));
   if (screen === 'home') {
     document.getElementById('homeScreen').classList.add('active');
@@ -50,43 +23,30 @@ function showScreen(screen) {
     document.getElementById('moedasGame').classList.add('active');
     startMoedas();
   }
-  // Jogos originais (caso seus blocos estejam no HTML)
-  else if (screen === 'shop') {
-    // document.getElementById('shopGame').classList.add('active');
-    // shopGame();
-  } else if (screen === 'budget') {
-    // document.getElementById('budgetGame').classList.add('active');
-    // budgetGame();
-  } else if (screen === 'prioridades') {
-    // document.getElementById('prioridadesGame').classList.add('active');
-    // prioridadesGame();
-  } else if (screen === 'quiz') {
-    // document.getElementById('quizGame').classList.add('active');
-    // quizGame();
-  } else if (screen === 'juros') {
-    // document.getElementById('jurosGame').classList.add('active');
-    // jurosGame();
-  } else if (screen === 'orcamento') {
-    // document.getElementById('orcamentoGame').classList.add('active');
-    // orcamentoGame();
-  }
 }
 
-// Função global para ser chamada nos cards
 function startGame(game) {
-  playClick();
   showScreen(game);
 }
 
-// ============= NOVOS JOGOS ==============
+// ----------- ESTATÍSTICAS -------------
+let stats = { jogos: 0, acertos: 0 };
+function atualizaStats(acertos = 0) {
+  stats.jogos++;
+  stats.acertos += acertos;
+  document.getElementById('total-games').textContent = stats.jogos;
+  document.getElementById('total-hits').textContent = stats.acertos;
+}
+function playAcerto() { document.getElementById('audio-certo').play(); }
+function playErro() { document.getElementById('audio-errado').play(); }
+function playClick() { document.getElementById('audio-click').play(); }
 
-// -- Quiz Rápido --
+// ----------- QUIZ RÁPIDO -------------
 const quizRapidoQuestoes = [
   { pergunta: "Ter uma reserva de emergência é importante.", resposta: true, explicacao: "Ajuda a evitar dívidas em imprevistos." },
   { pergunta: "Cheques são sempre a melhor forma de pagamento.", resposta: false, explicacao: "Existem opções mais seguras e práticas." },
   { pergunta: "Investimento em poupança nunca tem risco.", resposta: false, explicacao: "Toda aplicação financeira tem algum risco, mesmo pequeno." },
-  { pergunta: "Fazer compras parceladas sempre custa o mesmo que à vista.", resposta: false, explicacao: "Parcelamentos geralmente incluem juros." },
-  // ...adicione mais!
+  { pergunta: "Fazer compras parceladas sempre custa o mesmo que à vista.", resposta: false, explicacao: "Parcelamentos geralmente incluem juros." }
 ];
 let quizRapidoIndex = 0, quizRapidoScore = 0, quizRapidoTimer = null, quizRapidoTempo = 30;
 function startQuizRapido() {
@@ -124,13 +84,12 @@ function finalizaQuizRapido() {
   atualizaStats(quizRapidoScore);
 }
 
-// -- Quem Sou Eu --
+// ---------- QUEM SOU EU -------------
 const quemPerguntas = [
   { dica: "Sou uma quantia guardada para imprevistos.", resposta: "reserva de emergência" },
   { dica: "Sou o valor que sobra após pagar todas as contas.", resposta: "poupança" },
   { dica: "Sou o dinheiro emprestado pelo banco com cobrança de juros.", resposta: "empréstimo" },
-  { dica: "Sou um documento para pagamento, muito usado no Brasil.", resposta: "boleto" },
-  // ...adicione mais!
+  { dica: "Sou um documento para pagamento, muito usado no Brasil.", resposta: "boleto" }
 ];
 let quemAtiva = 0, quemScore = 0;
 function startQuem() {
@@ -160,10 +119,9 @@ function responderQuem() {
   setTimeout(()=>{ fb.style.display = 'none'; renderQuem(); }, 1100);
 }
 
-// -- Arrume a Sequência --
+// ---------- ARRUME A SEQUÊNCIA -------------
 const sequencias = [
-  { etapas: ["Receber salário", "Pagar contas essenciais", "Guardar para emergências", "Gastar com lazer"], correta: [0,1,2,3] },
-  // ...adicione mais sequências...
+  { etapas: ["Receber salário", "Pagar contas essenciais", "Guardar para emergências", "Gastar com lazer"], correta: [0,1,2,3] }
 ];
 let seqAtiva = 0, seqOrdem = [];
 function startSequencia() {
@@ -206,7 +164,7 @@ function verificaSequencia() {
   fb.style.display = 'block';
 }
 
-// -- Corta Despesas --
+// ---------- CORTA DESPESAS -------------
 const cortaGastos = [
   { nome: "Aluguel", essencial: true },
   { nome: "Cinema", essencial: false },
@@ -250,7 +208,7 @@ function verificaCorta() {
   fb.style.display = 'block';
 }
 
-// -- Multiplique seu Dinheiro --
+// ---------- MULTIPLIQUE SEU DINHEIRO -------------
 function startMultiplica() {
   document.getElementById('multiplica-feedback').style.display = 'none';
   document.getElementById('multiplica-valor').value = '';
@@ -276,7 +234,7 @@ function calculaMultiplica() {
   atualizaStats(1);
 }
 
-// -- Desafio das Moedas --
+// ---------- DESAFIO DAS MOEDAS -------------
 const moedasValores = [0.05,0.10,0.25,0.50,1,2,5];
 let moedasDesafioValor = 0, moedasSelecionadas = [];
 function startMoedas() {
