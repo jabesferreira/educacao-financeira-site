@@ -1,5 +1,18 @@
 // Estatísticas globais
-let stats = { jogos: 0, acertos: 0 };
+function showScreen(screen) {
+  document.querySelectorAll('.game-container').forEach(el => el.classList.remove('active'));
+  if(screen === 'home') {
+    document.getElementById('homeScreen').classList.add('active');
+  } else if(screen === 'quizrapido') {
+    document.getElementById('quizRapidoGame').classList.add('active');
+    startQuizRapido();
+  }
+  // repita para os outros jogos...
+}
+
+function startGame(game) {
+  showScreen(game);
+}let stats = { jogos: 0, acertos: 0 };
 function atualizaStats(acertos = 0) {
   stats.jogos++;
   stats.acertos += acertos;
