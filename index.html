@@ -1,1 +1,290 @@
-EM MANUTENÇÃO
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Academia de Educação Financeira</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="container">
+    <div id="statsPanel" class="stats-panel">
+      <div>Total de jogos jogados: <span id="total-games">0</span></div>
+      <div>Total de acertos: <span id="total-hits">0</span></div>
+    </div>
+    <div id="homeScreen" class="game-container active">
+      <h1>Academia de Educação Financeira</h1>
+      <h2>Santana Textiles</h2>
+      <div class="game-grid">
+        <div class="game-card" onclick="startGame('shop')">
+          <div class="game-icon">🛍️</div>
+          <h3>Loja a partir de R$10</h3>
+          <p>Controle seus impulsos e evite dívidas</p>
+        </div>
+        <div class="game-card" onclick="startGame('budget')">
+          <div class="game-icon">📊</div>
+          <h3>Simulação 50-30-20</h3>
+          <p>Organize sua renda mensal</p>
+        </div>
+        <div class="game-card" onclick="startGame('prioridades')">
+          <div class="game-icon">🎯</div>
+          <h3>Desafio das Prioridades</h3>
+          <p>Classifique gastos em necessidades e desejos</p>
+        </div>
+        <div class="game-card" onclick="startGame('quiz')">
+          <div class="game-icon">❓</div>
+          <h3>Quiz de Verdadeiro ou Falso</h3>
+          <p>Responda perguntas sobre finanças</p>
+        </div>
+        <div class="game-card" onclick="startGame('quizrapido')">
+          <div class="game-icon">⏱️</div>
+          <h3>Quiz Rápido</h3>
+          <p>Responda o maior número de perguntas em 30s</p>
+        </div>
+        <div class="game-card" onclick="startGame('quem')">
+          <div class="game-icon">🕵️‍♂️</div>
+          <h3>Quem Sou Eu?</h3>
+          <p>Adivinhe o termo financeiro pela dica</p>
+        </div>
+        <div class="game-card" onclick="startGame('sequencia')">
+          <div class="game-icon">🔢</div>
+          <h3>Arrume a Sequência</h3>
+          <p>Coloque as etapas financeiras na ordem correta</p>
+        </div>
+        <div class="game-card" onclick="startGame('corta')">
+          <div class="game-icon">✂️</div>
+          <h3>Corta Despesas</h3>
+          <p>Escolha quais gastos cortar</p>
+        </div>
+        <div class="game-card" onclick="startGame('juros')">
+          <div class="game-icon">💳</div>
+          <h3>Jogo dos Juros</h3>
+          <p>Veja o impacto dos juros nas compras parceladas</p>
+        </div>
+        <div class="game-card" onclick="startGame('multiplica')">
+          <div class="game-icon">💹</div>
+          <h3>Multiplique seu Dinheiro</h3>
+          <p>Simule o crescimento do seu dinheiro</p>
+        </div>
+        <div class="game-card" onclick="startGame('moedas')">
+          <div class="game-icon">🪙</div>
+          <h3>Desafio das Moedas</h3>
+          <p>Monte o valor exato com moedas</p>
+        </div>
+        <div class="game-card" onclick="startGame('orcamento')">
+          <div class="game-icon">📋</div>
+          <h3>Monte seu Orçamento</h3>
+          <p>Distribua sua renda em diferentes categorias</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ----------- TODOS OS JOGOS ------------ -->
+    <!-- Cada bloco abaixo é um jogo -->
+    <!-- Loja -->
+    <div id="shopGame" class="game-container">
+      <div class="nav-buttons">
+        <button class="nav-button" onclick="showScreen('home')">Início</button>
+        <button class="nav-button" onclick="startShopGame()">Reiniciar</button>
+      </div>
+      <h2>Loja a partir de R$10</h2>
+      <div class="info-box">
+        <div class="info-card">
+          <div>Saldo Atual</div>
+          <div id="currentBalance">R$ 1.518,00</div>
+        </div>
+        <div class="info-card">
+          <div>Gastos Totais</div>
+          <div id="currentDebt">R$ 0,00</div>
+        </div>
+      </div>
+      <div class="emoji-grid" id="emojiGrid"></div>
+      <div class="decision-buttons">
+        <button id="stopButton" class="decision-button" onclick="stopGame()">Finalizar Compras</button>
+      </div>
+      <div id="resultMessage" class="result-message" style="display: none;"></div>
+    </div>
+    <!-- Simulação 50-30-20 -->
+    <div id="budgetGame" class="game-container">
+      <div class="nav-buttons">
+        <button class="nav-button" onclick="showScreen('home')">Início</button>
+      </div>
+      <h2>Simulação 50-30-20</h2>
+      <p>Insira sua renda mensal e veja como dividir seu orçamento:</p>
+      <input type="number" id="rendaInput" class="simulador-input" placeholder="Digite sua renda mensal" oninput="calcularSimulacao()" />
+      <div class="simulador-result" id="resultadoSimulador"></div>
+    </div>
+    <!-- Desafio das Prioridades -->
+    <div id="prioridadesGame" class="game-container">
+      <div class="nav-buttons">
+        <button class="nav-button" onclick="showScreen('home')">Início</button>
+        <button class="nav-button" onclick="startPrioridades()">Reiniciar</button>
+      </div>
+      <h2>Desafio das Prioridades</h2>
+      <h3>Arraste cada gasto para a categoria correta!</h3>
+      <div style="margin-bottom:18px;font-size:1rem;">Necessidades: essenciais para viver. <br>Desejos: podem ser adiados ou evitados.</div>
+      <div id="prioridades-draggables" style="margin-bottom:16px;"></div>
+      <div>
+        <div class="dropzone" id="dz-necessidades" ondragover="event.preventDefault()" ondrop="dropPrioridade(event, 'necessidades')">
+          <div class="dropzone-label">Necessidades</div>
+          <div id="dz-necessidades-items"></div>
+        </div>
+        <div class="dropzone" id="dz-desejos" ondragover="event.preventDefault()" ondrop="dropPrioridade(event, 'desejos')">
+          <div class="dropzone-label">Desejos</div>
+          <div id="dz-desejos-items"></div>
+        </div>
+      </div>
+      <div class="decision-buttons">
+        <button class="decision-button" style="background:#4caf50;color:#fff;" onclick="verificaPrioridades()">Verificar</button>
+      </div>
+      <div id="prioridades-feedback" class="result-message" style="display:none"></div>
+    </div>
+    <!-- Quiz de Verdadeiro ou Falso -->
+    <div id="quizGame" class="game-container">
+      <div class="nav-buttons">
+        <button class="nav-button" onclick="showScreen('home')">Início</button>
+        <button class="nav-button" onclick="startQuiz()">Reiniciar</button>
+      </div>
+      <h2>Quiz de Verdadeiro ou Falso</h2>
+      <div id="quiz-question" class="quiz-question"></div>
+      <div class="decision-buttons">
+        <button class="decision-button" style="background:#4caf50;color:#fff;" onclick="responderQuiz(true)">Verdadeiro</button>
+        <button class="decision-button" style="background:#e53935;color:#fff;" onclick="responderQuiz(false)">Falso</button>
+      </div>
+      <div id="quiz-feedback" class="result-message" style="display:none"></div>
+      <div class="result-message" id="quiz-score" style="display:none"></div>
+    </div>
+    <!-- Quiz Rápido -->
+    <div id="quizrapidoGame" class="game-container">
+      <div class="nav-buttons">
+        <button class="nav-button" onclick="showScreen('home')">Início</button>
+        <button class="nav-button" onclick="startQuizRapido()">Reiniciar</button>
+      </div>
+      <h2>Quiz Rápido</h2>
+      <div id="quizrapido-timer" class="quizrapido-timer"></div>
+      <div id="quizrapido-question" class="quiz-question"></div>
+      <div class="decision-buttons">
+        <button class="decision-button" onclick="responderQuizRapido(true)">Verdadeiro</button>
+        <button class="decision-button" onclick="responderQuizRapido(false)">Falso</button>
+      </div>
+      <div id="quizrapido-feedback" class="result-message" style="display:none"></div>
+      <div class="result-message" id="quizrapido-score" style="display:none"></div>
+    </div>
+    <!-- Quem sou eu -->
+    <div id="quemGame" class="game-container">
+      <div class="nav-buttons">
+        <button class="nav-button" onclick="showScreen('home')">Início</button>
+        <button class="nav-button" onclick="startQuem()">Reiniciar</button>
+      </div>
+      <h2>Quem Sou Eu?</h2>
+      <div class="quem-dica" id="quem-dica"></div>
+      <input id="quem-resposta" class="quem-input" type="text" placeholder="Digite sua resposta..." autocomplete="off"/>
+      <div class="decision-buttons">
+        <button class="decision-button" onclick="responderQuem()">Responder</button>
+      </div>
+      <div id="quem-feedback" class="result-message" style="display:none"></div>
+      <div class="result-message" id="quem-score" style="display:none"></div>
+    </div>
+    <!-- Sequência -->
+    <div id="sequenciaGame" class="game-container">
+      <div class="nav-buttons">
+        <button class="nav-button" onclick="showScreen('home')">Início</button>
+        <button class="nav-button" onclick="startSequencia()">Reiniciar</button>
+      </div>
+      <h2>Arrume a Sequência</h2>
+      <p>Arraste as etapas para a ordem correta!</p>
+      <div id="sequencia-lista" class="sequencia-lista"></div>
+      <div class="decision-buttons">
+        <button class="decision-button" onclick="verificaSequencia()">Verificar</button>
+      </div>
+      <div id="sequencia-feedback" class="result-message" style="display:none"></div>
+    </div>
+    <!-- Corta Despesas -->
+    <div id="cortaGame" class="game-container">
+      <div class="nav-buttons">
+        <button class="nav-button" onclick="showScreen('home')">Início</button>
+        <button class="nav-button" onclick="startCorta()">Reiniciar</button>
+      </div>
+      <h2>Corta Despesas</h2>
+      <p>Selecione os gastos que você cortaria para equilibrar o orçamento:</p>
+      <div id="corta-lista" class="corta-lista"></div>
+      <div class="decision-buttons">
+        <button class="decision-button" onclick="verificaCorta()">Verificar</button>
+      </div>
+      <div id="corta-feedback" class="result-message" style="display:none"></div>
+    </div>
+    <!-- Jogo dos Juros -->
+    <div id="jurosGame" class="game-container">
+      <div class="nav-buttons">
+        <button class="nav-button" onclick="showScreen('home')">Início</button>
+        <button class="nav-button" onclick="startJuros()">Reiniciar</button>
+      </div>
+      <h2>Jogo dos Juros</h2>
+      <h3>Escolha: pagar à vista ou parcelar?</h3>
+      <div id="juros-pergunta" style="margin:18px 0;font-size:1.1rem;"></div>
+      <div class="decision-buttons" id="juros-opcoes"></div>
+      <div class="decision-buttons">
+        <button class="decision-button" id="juros-next-btn" style="background:#4caf50;color:#fff;display:none;" onclick="proximaPerguntaJuros()">Próxima Pergunta</button>
+      </div>
+      <div id="juros-feedback" class="result-message" style="display:none"></div>
+      <div id="juros-orientacao" class="result-message" style="display:none"></div>
+    </div>
+    <!-- Multiplica -->
+    <div id="multiplicaGame" class="game-container">
+      <div class="nav-buttons">
+        <button class="nav-button" onclick="showScreen('home')">Início</button>
+        <button class="nav-button" onclick="startMultiplica()">Reiniciar</button>
+      </div>
+      <h2>Multiplique seu Dinheiro</h2>
+      <p>Veja como o dinheiro cresce com juros compostos!</p>
+      <input type="number" class="multiplica-input" id="multiplica-valor" placeholder="Valor inicial (R$)" min="1" step="1">
+      <input type="number" class="multiplica-input" id="multiplica-taxa" placeholder="Taxa ao mês (%)" min="0.1" step="0.1">
+      <input type="number" class="multiplica-input" id="multiplica-meses" placeholder="Meses" min="1" step="1">
+      <div class="decision-buttons">
+        <button class="decision-button" onclick="calculaMultiplica()">Calcular</button>
+      </div>
+      <div id="multiplica-feedback" class="result-message" style="display:none"></div>
+    </div>
+    <!-- Moedas -->
+    <div id="moedasGame" class="game-container">
+      <div class="nav-buttons">
+        <button class="nav-button" onclick="showScreen('home')">Início</button>
+        <button class="nav-button" onclick="startMoedas()">Reiniciar</button>
+      </div>
+      <h2>Desafio das Moedas</h2>
+      <div id="moedas-desafio" class="moedas-desafio"></div>
+      <div id="moedas-lista" class="moedas-lista"></div>
+      <div class="decision-buttons">
+        <button class="decision-button" onclick="verificaMoedas()">Verificar</button>
+      </div>
+      <div id="moedas-feedback" class="result-message" style="display:none"></div>
+    </div>
+    <!-- Orcamento -->
+    <div id="orcamentoGame" class="game-container">
+      <div class="nav-buttons">
+        <button class="nav-button" onclick="showScreen('home')">Início</button>
+        <button class="nav-button" onclick="startOrcamento()">Reiniciar</button>
+      </div>
+      <h2>Monte seu Orçamento</h2>
+      <p>Distribua uma renda fictícia de <strong>R$ 1.518,00</strong> entre as categorias abaixo:</p>
+      <form id="orcamento-form" onsubmit="return false;">
+        <div class="budget-category">Moradia<br><input type="number" min="0" class="budget-input" id="input-moradia" value="0" /></div>
+        <div class="budget-category">Alimentação<br><input type="number" min="0" class="budget-input" id="input-alimentacao" value="0" /></div>
+        <div class="budget-category">Lazer<br><input type="number" min="0" class="budget-input" id="input-lazer" value="0" /></div>
+        <div class="budget-category">Transporte<br><input type="number" min="0" class="budget-input" id="input-transporte" value="0" /></div>
+        <div class="budget-category">Educação<br><input type="number" min="0" class="budget-input" id="input-educacao" value="0" /></div>
+        <div class="budget-category">Poupança<br><input type="number" min="0" class="budget-input" id="input-poupanca" value="0" /></div>
+        <div style="margin-top:12px;">
+          <button class="decision-button" style="background:#4caf50;color:#fff;" onclick="verificaOrcamento()">Verificar</button>
+        </div>
+      </form>
+      <div id="orcamento-feedback" class="budget-feedback"></div>
+    </div>
+  </div>
+  <audio id="audio-certo" src="https://cdn.pixabay.com/audio/2022/07/26/audio_124bfaed7b.mp3"></audio>
+  <audio id="audio-errado" src="https://cdn.pixabay.com/audio/2022/07/26/audio_124bfaed7b.mp3"></audio>
+  <audio id="audio-click" src="https://cdn.pixabay.com/audio/2022/07/26/audio_124bfaed7b.mp3"></audio>
+  <script src="script.js"></script>
+</body>
+</html>
