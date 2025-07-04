@@ -1,94 +1,11 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Academia de Educação Financeira</title>
-  <link rel="stylesheet" href="style.css">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
-</head>
-<body>
-  <div class="container">
-    <div id="statsPanel" class="stats-panel">
-      <div>Total de jogos jogados: <span id="total-games">0</span></div>
-      <div>Total de acertos: <span id="total-hits">0</span></div>
-    </div>
-    <div id="homeScreen" class="game-container active">
-      <h1>Academia de Educação Financeira</h1>
-      <h2>Santana Textiles</h2>
-      <div class="game-grid">
-        <div class="game-card" onclick="startGame('shop')">
-          <div class="game-icon">🛍️</div>
-          <h3>Loja a partir de R$10</h3>
-          <p>Controle seus impulsos e evite dívidas</p>
-        </div>
-        <div class="game-card" onclick="startGame('budget')">
-          <div class="game-icon">📊</div>
-          <h3>Simulação 50-30-20</h3>
-          <p>Organize sua renda mensal</p>
-        </div>
-        <div class="game-card" onclick="startGame('prioridades')">
-          <div class="game-icon">🎯</div>
-          <h3>Desafio das Prioridades</h3>
-          <p>Classifique gastos em necessidades e desejos</p>
-        </div>
-        <div class="game-card" onclick="startGame('quiz')">
-          <div class="game-icon">❓</div>
-          <h3>Quiz de Verdadeiro ou Falso</h3>
-          <p>Responda perguntas sobre finanças</p>
-        </div>
-        <div class="game-card" onclick="startGame('quizrapido')">
-          <div class="game-icon">⏱️</div>
-          <h3>Quiz Rápido</h3>
-          <p>Responda o maior número de perguntas em 30s</p>
-        </div>
-        <div class="game-card" onclick="startGame('quem')">
-          <div class="game-icon">🕵️‍♂️</div>
-          <h3>Quem Sou Eu?</h3>
-          <p>Adivinhe o termo financeiro pela dica</p>
-        </div>
-        <div class="game-card" onclick="startGame('sequencia')">
-          <div class="game-icon">🔢</div>
-          <h3>Arrume a Sequência</h3>
-          <p>Coloque as etapas financeiras na ordem correta</p>
-        </div>
-        <div class="game-card" onclick="startGame('corta')">
-          <div class="game-icon">✂️</div>
-          <h3>Corta Despesas</h3>
-          <p>Escolha quais gastos cortar</p>
-        </div>
-        <div class="game-card" onclick="startGame('juros')">
-          <div class="game-icon">💳</div>
-          <h3>Jogo dos Juros</h3>
-          <p>Veja o impacto dos juros nas compras parceladas</p>
-        </div>
-        <div class="game-card" onclick="startGame('multiplica')">
-          <div class="game-icon">💹</div>
-          <h3>Multiplique seu Dinheiro</h3>
-          <p>Simule o crescimento do seu dinheiro</p>
-        </div>
-        <div class="game-card" onclick="startGame('moedas')">
-          <div class="game-icon">🪙</div>
-          <h3>Desafio das Moedas</h3>
-          <p>Monte o valor exato com moedas</p>
-        </div>
-        <div class="game-card" onclick="startGame('orcamento')">
-          <div class="game-icon">📋</div>
-          <h3>Monte seu Orçamento</h3>
-          <p>Distribua sua renda em diferentes categorias</p>
-        </div>
-      </div>
-    </div>
-
-    <!-- ----------- TODOS OS JOGOS ------------ -->
-    <!-- Cada bloco abaixo é um jogo -->
-    <!-- Loja -->
+</div>
     <div id="shopGame" class="game-container">
       <div class="nav-buttons">
         <button class="nav-button" onclick="showScreen('home')">Início</button>
-        <button class="nav-button" onclick="startShopGame()">Reiniciar</button>
+        <button class="nav-button" onclick="restartGame()">Reiniciar</button>
       </div>
       <h2>Loja a partir de R$10</h2>
+      <h3>Escolha seus itens com consciência!</h3>
       <div class="info-box">
         <div class="info-card">
           <div>Saldo Atual</div>
@@ -105,7 +22,6 @@
       </div>
       <div id="resultMessage" class="result-message" style="display: none;"></div>
     </div>
-    <!-- Simulação 50-30-20 -->
     <div id="budgetGame" class="game-container">
       <div class="nav-buttons">
         <button class="nav-button" onclick="showScreen('home')">Início</button>
@@ -115,7 +31,6 @@
       <input type="number" id="rendaInput" class="simulador-input" placeholder="Digite sua renda mensal" oninput="calcularSimulacao()" />
       <div class="simulador-result" id="resultadoSimulador"></div>
     </div>
-    <!-- Desafio das Prioridades -->
     <div id="prioridadesGame" class="game-container">
       <div class="nav-buttons">
         <button class="nav-button" onclick="showScreen('home')">Início</button>
@@ -140,7 +55,6 @@
       </div>
       <div id="prioridades-feedback" class="result-message" style="display:none"></div>
     </div>
-    <!-- Quiz de Verdadeiro ou Falso -->
     <div id="quizGame" class="game-container">
       <div class="nav-buttons">
         <button class="nav-button" onclick="showScreen('home')">Início</button>
@@ -155,66 +69,6 @@
       <div id="quiz-feedback" class="result-message" style="display:none"></div>
       <div class="result-message" id="quiz-score" style="display:none"></div>
     </div>
-    <!-- Quiz Rápido -->
-    <div id="quizrapidoGame" class="game-container">
-      <div class="nav-buttons">
-        <button class="nav-button" onclick="showScreen('home')">Início</button>
-        <button class="nav-button" onclick="startQuizRapido()">Reiniciar</button>
-      </div>
-      <h2>Quiz Rápido</h2>
-      <div id="quizrapido-timer" class="quizrapido-timer"></div>
-      <div id="quizrapido-question" class="quiz-question"></div>
-      <div class="decision-buttons">
-        <button class="decision-button" onclick="responderQuizRapido(true)">Verdadeiro</button>
-        <button class="decision-button" onclick="responderQuizRapido(false)">Falso</button>
-      </div>
-      <div id="quizrapido-feedback" class="result-message" style="display:none"></div>
-      <div class="result-message" id="quizrapido-score" style="display:none"></div>
-    </div>
-    <!-- Quem sou eu -->
-    <div id="quemGame" class="game-container">
-      <div class="nav-buttons">
-        <button class="nav-button" onclick="showScreen('home')">Início</button>
-        <button class="nav-button" onclick="startQuem()">Reiniciar</button>
-      </div>
-      <h2>Quem Sou Eu?</h2>
-      <div class="quem-dica" id="quem-dica"></div>
-      <input id="quem-resposta" class="quem-input" type="text" placeholder="Digite sua resposta..." autocomplete="off"/>
-      <div class="decision-buttons">
-        <button class="decision-button" onclick="responderQuem()">Responder</button>
-      </div>
-      <div id="quem-feedback" class="result-message" style="display:none"></div>
-      <div class="result-message" id="quem-score" style="display:none"></div>
-    </div>
-    <!-- Sequência -->
-    <div id="sequenciaGame" class="game-container">
-      <div class="nav-buttons">
-        <button class="nav-button" onclick="showScreen('home')">Início</button>
-        <button class="nav-button" onclick="startSequencia()">Reiniciar</button>
-      </div>
-      <h2>Arrume a Sequência</h2>
-      <p>Arraste as etapas para a ordem correta!</p>
-      <div id="sequencia-lista" class="sequencia-lista"></div>
-      <div class="decision-buttons">
-        <button class="decision-button" onclick="verificaSequencia()">Verificar</button>
-      </div>
-      <div id="sequencia-feedback" class="result-message" style="display:none"></div>
-    </div>
-    <!-- Corta Despesas -->
-    <div id="cortaGame" class="game-container">
-      <div class="nav-buttons">
-        <button class="nav-button" onclick="showScreen('home')">Início</button>
-        <button class="nav-button" onclick="startCorta()">Reiniciar</button>
-      </div>
-      <h2>Corta Despesas</h2>
-      <p>Selecione os gastos que você cortaria para equilibrar o orçamento:</p>
-      <div id="corta-lista" class="corta-lista"></div>
-      <div class="decision-buttons">
-        <button class="decision-button" onclick="verificaCorta()">Verificar</button>
-      </div>
-      <div id="corta-feedback" class="result-message" style="display:none"></div>
-    </div>
-    <!-- Jogo dos Juros -->
     <div id="jurosGame" class="game-container">
       <div class="nav-buttons">
         <button class="nav-button" onclick="showScreen('home')">Início</button>
@@ -230,37 +84,6 @@
       <div id="juros-feedback" class="result-message" style="display:none"></div>
       <div id="juros-orientacao" class="result-message" style="display:none"></div>
     </div>
-    <!-- Multiplica -->
-    <div id="multiplicaGame" class="game-container">
-      <div class="nav-buttons">
-        <button class="nav-button" onclick="showScreen('home')">Início</button>
-        <button class="nav-button" onclick="startMultiplica()">Reiniciar</button>
-      </div>
-      <h2>Multiplique seu Dinheiro</h2>
-      <p>Veja como o dinheiro cresce com juros compostos!</p>
-      <input type="number" class="multiplica-input" id="multiplica-valor" placeholder="Valor inicial (R$)" min="1" step="1">
-      <input type="number" class="multiplica-input" id="multiplica-taxa" placeholder="Taxa ao mês (%)" min="0.1" step="0.1">
-      <input type="number" class="multiplica-input" id="multiplica-meses" placeholder="Meses" min="1" step="1">
-      <div class="decision-buttons">
-        <button class="decision-button" onclick="calculaMultiplica()">Calcular</button>
-      </div>
-      <div id="multiplica-feedback" class="result-message" style="display:none"></div>
-    </div>
-    <!-- Moedas -->
-    <div id="moedasGame" class="game-container">
-      <div class="nav-buttons">
-        <button class="nav-button" onclick="showScreen('home')">Início</button>
-        <button class="nav-button" onclick="startMoedas()">Reiniciar</button>
-      </div>
-      <h2>Desafio das Moedas</h2>
-      <div id="moedas-desafio" class="moedas-desafio"></div>
-      <div id="moedas-lista" class="moedas-lista"></div>
-      <div class="decision-buttons">
-        <button class="decision-button" onclick="verificaMoedas()">Verificar</button>
-      </div>
-      <div id="moedas-feedback" class="result-message" style="display:none"></div>
-    </div>
-    <!-- Orcamento -->
     <div id="orcamentoGame" class="game-container">
       <div class="nav-buttons">
         <button class="nav-button" onclick="showScreen('home')">Início</button>
@@ -282,9 +105,391 @@
       <div id="orcamento-feedback" class="budget-feedback"></div>
     </div>
   </div>
-  <audio id="audio-certo" src="https://cdn.pixabay.com/audio/2022/07/26/audio_124bfaed7b.mp3"></audio>
-  <audio id="audio-errado" src="https://cdn.pixabay.com/audio/2022/07/26/audio_124bfaed7b.mp3"></audio>
-  <audio id="audio-click" src="https://cdn.pixabay.com/audio/2022/07/26/audio_124bfaed7b.mp3"></audio>
-  <script src="script.js"></script>
+  <script>
+    // Loja
+    const allEmojis = ['📱','👕','👖','👟','🎮','📚','🍎','🍕','☕','🎁','💎','✈️','🎸','⚽','💻','⌚','🕶️','🧢','🎧','🍿'];
+    const emojiPrices = {
+      '📱': 120.00, '👕': 40.00, '👖': 60.00, '👟': 80.00, '🎮': 200.00, '📚': 30.00, '🍎': 3.00, '🍕': 25.00,
+      '☕': 6.50, '🎁': 90.00, '💎': 500.00, '✈️': 450.00, '🎸': 350.00, '⚽': 45.00, '💻': 1200.00, '⌚': 150.00,
+      '🕶️': 70.00, '🧢': 35.00, '🎧': 180.00, '🍿': 12.00
+    };
+    const gameState = {
+      currentGame: null,
+      shop: { initialBalance: 1518, currentBalance: 1518, debt: 0, itemsPurchased: 0, currentEmojis: [] }
+    };
+    function showScreen(screenId) {
+      document.querySelectorAll('.game-container').forEach(el => el.classList.remove('active'));
+      document.getElementById(screenId + 'Screen').classList.add('active');
+    }
+    function startGame(gameType) {
+      gameState.currentGame = gameType;
+      document.querySelectorAll('.game-container').forEach(el => el.classList.remove('active'));
+      if (gameType === 'shop') { document.getElementById('shopGame').classList.add('active'); startShopGame(); }
+      else if (gameType === 'budget') { document.getElementById('budgetGame').classList.add('active'); }
+      else if (gameType === 'prioridades') { document.getElementById('prioridadesGame').classList.add('active'); startPrioridades(); }
+      else if (gameType === 'quiz') { document.getElementById('quizGame').classList.add('active'); startQuiz(); }
+      else if (gameType === 'juros') { document.getElementById('jurosGame').classList.add('active'); startJuros(); }
+      else if (gameType === 'orcamento') { document.getElementById('orcamentoGame').classList.add('active'); startOrcamento(); }
+    }
+    function restartGame() {
+      if (gameState.currentGame === 'shop') startShopGame();
+    }
+    function startShopGame() {
+      gameState.shop = { initialBalance: 1518, currentBalance: 1518, debt: 0, itemsPurchased: 0, currentEmojis: [] };
+      selectNewEmojis(5);
+      updateShopDisplay();
+      document.getElementById('resultMessage').style.display = 'none';
+    }
+    function selectNewEmojis(count) {
+      const available = [...allEmojis];
+      gameState.shop.currentEmojis = [];
+      for (let i = 0; i < count && available.length > 0; i++) {
+        const idx = Math.floor(Math.random() * available.length);
+        gameState.shop.currentEmojis.push(available[idx]);
+        available.splice(idx, 1);
+      }
+      updateEmojiDisplay();
+    }
+    function updateEmojiDisplay() {
+      const grid = document.getElementById('emojiGrid');
+      grid.innerHTML = '';
+      gameState.shop.currentEmojis.forEach(emoji => {
+        const el = document.createElement('div');
+        el.className = 'emoji-item';
+        el.innerHTML = `<div>${emoji}</div><div class="price-tag">R$ ${emojiPrices[emoji].toFixed(2).replace('.', ',')}</div>`;
+        el.onclick = () => buyItem(emoji);
+        grid.appendChild(el);
+      });
+    }
+    function updateShopDisplay() {
+      document.getElementById('currentBalance').textContent = `R$ ${gameState.shop.currentBalance.toFixed(2).replace('.', ',')}`;
+      document.getElementById('currentDebt').textContent = `R$ ${gameState.shop.debt.toFixed(2).replace('.', ',')}`;
+    }
+    function buyItem(emoji) {
+      const price = emojiPrices[emoji];
+      if (gameState.shop.currentBalance < price) {
+        alert('Saldo insuficiente!');
+        return;
+      }
+      gameState.shop.currentBalance -= price;
+      gameState.shop.debt += price;
+      gameState.shop.itemsPurchased++;
+      selectNewEmojis(5);
+      updateShopDisplay();
+    }
+    function stopGame() {
+      const perc = (gameState.shop.debt / gameState.shop.initialBalance * 100).toFixed(1);
+      const msg = document.getElementById('resultMessage');
+      let feedback = "";
+      if (perc <= 30) feedback = "Excelente! Você manteve seus gastos com desejos dentro de um limite saudável.";
+      else if (perc <= 50) feedback = "Atenção! Você ultrapassou o limite recomendado (30%) para desejos. Tente se controlar mais.";
+      else feedback = "Cuidado! Você comprometeu uma grande parte da sua renda com desejos. Isso pode gerar dívidas!";
+      msg.innerHTML = `
+        <p>Você comprou ${gameState.shop.itemsPurchased} itens, gastando R$ ${gameState.shop.debt.toFixed(2).replace('.', ',')}</p>
+        <p>Isso representa ${perc}% da sua renda</p>
+        <p><strong>${feedback}</strong></p>`;
+      msg.style.display = 'block';
+    }
+    function calcularSimulacao() {
+      const valor = parseFloat(document.getElementById('rendaInput').value);
+      const container = document.getElementById('resultadoSimulador');
+      if (isNaN(valor) || valor <= 0) {
+        container.innerHTML = '';
+        return;
+      }
+      const n = (valor * 0.5).toFixed(2).replace('.', ',');
+      const d = (valor * 0.3).toFixed(2).replace('.', ',');
+      const p = (valor * 0.2).toFixed(2).replace('.', ',');
+      container.innerHTML = `
+        <div class="simulador-box"><strong>50%</strong><br>Necessidades: R$ ${n}</div>
+        <div class="simulador-box"><strong>30%</strong><br>Desejos: R$ ${d}</div>
+        <div class="simulador-box"><strong>20%</strong><br>Poupança: R$ ${p}</div>`;
+    }
+    // Prioridades
+    const prioridadesGastos = [
+      { nome: "Aluguel", cat: "necessidades" },
+      { nome: "Internet", cat: "necessidades" },
+      { nome: "Cinema", cat: "desejos" },
+      { nome: "Supermercado", cat: "necessidades" },
+      { nome: "Restaurante caro", cat: "desejos" },
+      { nome: "Plano de saúde", cat: "necessidades" },
+      { nome: "Tênis novo", cat: "desejos" },
+      { nome: "Energia elétrica", cat: "necessidades" }
+    ];
+    let prioridadesEmbaralhadas = [];
+    let prioridadesResposta = { necessidades: [], desejos: [] };
+    function startPrioridades() {
+      document.getElementById('prioridades-feedback').style.display = 'none';
+      prioridadesEmbaralhadas = prioridadesGastos.slice().sort(() => Math.random() - 0.5);
+      prioridadesResposta = { necessidades: [], desejos: [] };
+      renderPrioridades();
+    }
+    function renderPrioridades() {
+      const draggablesDiv = document.getElementById('prioridades-draggables');
+      draggablesDiv.innerHTML = '';
+      prioridadesEmbaralhadas.forEach((item,i) => {
+        if (
+          !prioridadesResposta.necessidades.includes(item.nome) &&
+          !prioridadesResposta.desejos.includes(item.nome)
+        ) {
+          const el = document.createElement('div');
+          el.className = 'draggable';
+          el.draggable = true;
+          el.textContent = item.nome;
+          el.id = 'drag-'+i;
+          el.ondragstart = (e) => { e.dataTransfer.setData('text', item.nome); };
+          draggablesDiv.appendChild(el);
+        }
+      });
+      ['necessidades','desejos'].forEach(cat=>{
+        const dz = document.getElementById('dz-'+cat+'-items');
+        dz.innerHTML = '';
+        prioridadesResposta[cat].forEach(n=>{
+          const el = document.createElement('div');
+          el.className = 'draggable';
+          el.textContent = n;
+          el.draggable = false;
+          el.style.opacity = 0.7;
+          dz.appendChild(el);
+        });
+      });
+    }
+    function dropPrioridade(ev, cat) {
+      ev.preventDefault();
+      const nome = ev.dataTransfer.getData('text');
+      if (!prioridadesResposta[cat].includes(nome)) {
+        prioridadesResposta[cat].push(nome);
+        renderPrioridades();
+      }
+    }
+    function verificaPrioridades() {
+      let acertos = 0;
+      let total = prioridadesGastos.length;
+      prioridadesGastos.forEach(item=>{
+        if (prioridadesResposta[item.cat].includes(item.nome)) acertos++;
+      });
+      let msg = `Você classificou corretamente ${acertos} de ${total} gastos.<br>`;
+      if (acertos === total) msg += "Parabéns! Tudo certo!";
+      else if (acertos >= total-2) msg += "Muito bom! Só pequenos ajustes.";
+      else msg += "Tente novamente para melhorar seu resultado.";
+      const fb = document.getElementById('prioridades-feedback');
+      fb.innerHTML = msg;
+      fb.style.display = 'block';
+    }
+    // Quiz
+    const quizQuestoes = [
+      {
+        pergunta: "Guardar dinheiro só vale a pena se for muito.",
+        resposta: false,
+        explicacao: "Guardar qualquer valor é importante, mesmo que pequeno. O hábito conta!"
+      },
+      {
+        pergunta: "Cartão de crédito é dinheiro extra.",
+        resposta: false,
+        explicacao: "Cartão de crédito é uma forma de pagamento, não dinheiro a mais."
+      },
+      {
+        pergunta: "Ter uma reserva de emergência ajuda a evitar dívidas.",
+        resposta: true,
+        explicacao: "Uma reserva cobre imprevistos sem precisar recorrer a empréstimos."
+      },
+      {
+        pergunta: "Investir sempre envolve algum risco.",
+        resposta: true,
+        explicacao: "Todo investimento tem riscos, mesmo os mais conservadores."
+      },
+      {
+        pergunta: "Juros compostos fazem o dinheiro render mais ao longo do tempo.",
+        resposta: true,
+        explicacao: "Juros compostos aumentam o rendimento ao reinvestir os ganhos."
+      },
+      {
+        pergunta: "É seguro compartilhar senhas bancárias com amigos.",
+        resposta: false,
+        explicacao: "Jamais compartilhe suas senhas! É perigoso e pode causar prejuízos."
+      }
+    ];
+    let quizIndex = 0, quizScore = 0;
+    function startQuiz() {
+      quizIndex = 0;
+      quizScore = 0;
+      document.getElementById('quiz-feedback').style.display = 'none';
+      document.getElementById('quiz-score').style.display = 'none';
+      renderQuiz();
+    }
+    function renderQuiz() {
+      if (quizIndex >= quizQuestoes.length) {
+        document.getElementById('quiz-question').textContent = '';
+        document.getElementById('quiz-score').innerHTML = `Você acertou <strong>${quizScore} de ${quizQuestoes.length}</strong>!`;
+        document.getElementById('quiz-score').style.display = 'block';
+        return;
+      }
+      document.getElementById('quiz-question').textContent = quizQuestoes[quizIndex].pergunta;
+    }
+    function responderQuiz(v) {
+      if (quizIndex >= quizQuestoes.length) return;
+      const certa = quizQuestoes[quizIndex].resposta === v;
+      const explicacao = quizQuestoes[quizIndex].explicacao;
+      let fb = document.getElementById('quiz-feedback');
+      fb.innerHTML = (certa ? "Correto! " : "Errado! ") + explicacao;
+      fb.style.background = certa ? "#e6f4ea" : "#ffebee";
+      fb.style.color = certa ? "#2e7d32" : "#b71c1c";
+      fb.style.display = "block";
+      if (certa) quizScore++;
+      quizIndex++;
+      setTimeout(()=>{
+        fb.style.display = 'none';
+        renderQuiz();
+      }, 1700);
+    }
+    // Juros
+    const jurosItens = [
+      {
+        nome: "Celular",
+        preco: 1500,
+        parcelas: 10,
+        jurosMes: 0.037,
+      },
+      {
+        nome: "Tênis",
+        preco: 400,
+        parcelas: 5,
+        jurosMes: 0.025,
+      },
+      {
+        nome: "Fogão",
+        preco: 900,
+        parcelas: 8,
+        jurosMes: 0.03,
+      },
+      {
+        nome: "Notebook",
+        preco: 2500,
+        parcelas: 12,
+        jurosMes: 0.035,
+      },
+      {
+        nome: "Bicicleta",
+        preco: 1200,
+        parcelas: 6,
+        jurosMes: 0.028,
+      },
+      {
+        nome: "Sofá",
+        preco: 2000,
+        parcelas: 10,
+        jurosMes: 0.032,
+      }
+    ];
+    let jurosAtivo = 0;
+    let jurosPerguntaAtual = 0;
+    function startJuros() {
+      jurosPerguntaAtual = 0;
+      document.getElementById('juros-feedback').style.display = 'none';
+      document.getElementById('juros-orientacao').style.display = 'none';
+      document.getElementById('juros-next-btn').style.display = 'none';
+      renderJuros();
+    }
+    function renderJuros() {
+      if (jurosPerguntaAtual >= jurosItens.length) {
+        document.getElementById('juros-pergunta').innerHTML = '';
+        document.getElementById('juros-opcoes').innerHTML = '';
+        document.getElementById('juros-next-btn').style.display = 'none';
+        document.getElementById('juros-feedback').style.display = 'none';
+        document.getElementById('juros-orientacao').style.display = 'block';
+        document.getElementById('juros-orientacao').innerHTML = `<strong>Orientação:</strong><br>
+        O pagamento à vista geralmente é mais vantajoso, pois evita juros e dívidas futuras. 
+        Ao parcelar, o valor total pago costuma ser maior por conta dos juros. Sempre verifique o valor final antes de decidir.`;
+        return;
+      }
+      document.getElementById('juros-orientacao').style.display = 'none';
+      jurosAtivo = jurosPerguntaAtual;
+      document.getElementById('juros-feedback').style.display = 'none';
+      document.getElementById('juros-next-btn').style.display = 'none';
+      const item = jurosItens[jurosAtivo];
+      document.getElementById('juros-pergunta').innerHTML =
+        `Você quer comprar um <strong>${item.nome}</strong> que custa <strong>R$ ${item.preco.toFixed(2).replace('.',',')}</strong>.<br>Você pode pagar à vista ou em ${item.parcelas}x com juros de ${(item.jurosMes*100).toFixed(1)}% ao mês. Como prefere pagar?`;
+      const opcoes = document.getElementById('juros-opcoes');
+      opcoes.innerHTML = '';
+      const btn1 = document.createElement('button');
+      btn1.className = 'decision-button';
+      btn1.style.background = '#4caf50'; btn1.style.color = '#fff';
+      btn1.textContent = 'À vista';
+      btn1.onclick = ()=>respondeJuros('avista');
+      opcoes.appendChild(btn1);
+      const btn2 = document.createElement('button');
+      btn2.className = 'decision-button';
+      btn2.style.background = '#1976d2'; btn2.style.color = '#fff';
+      btn2.textContent = `Parcelado (${item.parcelas}x)`;
+      btn2.onclick = ()=>respondeJuros('parcelado');
+      opcoes.appendChild(btn2);
+    }
+    function respondeJuros(op) {
+      const item = jurosItens[jurosAtivo];
+      let msg = '';
+      if (op === 'avista') {
+        msg = `Você pagou <strong>R$ ${item.preco.toFixed(2).replace('.',',')}</strong> à vista, sem juros!`;
+      } else {
+        const vf = item.preco * Math.pow(1+item.jurosMes, item.parcelas);
+        msg = `Parcelado, você pagará <strong>R$ ${vf.toFixed(2).replace('.',',')}</strong> no total.<br>
+        Ou seja, pagará <strong>R$ ${(vf-item.preco).toFixed(2).replace('.',',')}</strong> a mais em juros.`;
+      }
+      const fb = document.getElementById('juros-feedback');
+      fb.innerHTML = msg;
+      fb.style.display = 'block';
+      document.getElementById('juros-next-btn').style.display = 'inline-block';
+    }
+    function proximaPerguntaJuros() {
+      jurosPerguntaAtual++;
+      renderJuros();
+    }
+    // Orçamento
+    const orcamentoLimite = 1518;
+    function startOrcamento() {
+      document.getElementById('orcamento-feedback').textContent = '';
+      ['moradia','alimentacao','lazer','transporte','educacao','poupanca'].forEach(cat=>{
+        document.getElementById('input-'+cat).value = 0;
+        document.getElementById('input-'+cat).oninput = orcamentoInputHandler;
+      });
+    }
+    function orcamentoInputHandler() {
+      const inputs = [
+        'moradia','alimentacao','lazer','transporte','educacao','poupanca'
+      ].map(cat=>document.getElementById('input-'+cat));
+      let valores = inputs.map(input=>parseInt(input.value)||0);
+      let soma = valores.reduce((a,b)=>a+b,0);
+      if (soma > orcamentoLimite) {
+        let diff = soma - orcamentoLimite;
+        let inputAtual = this;
+        let novoValor = Math.max(0, parseInt(inputAtual.value) - diff);
+        inputAtual.value = novoValor;
+        valores = inputs.map(input=>parseInt(input.value)||0);
+        soma = valores.reduce((a,b)=>a+b,0);
+      }
+      const restante = orcamentoLimite - soma;
+      document.getElementById('orcamento-feedback').innerHTML = `Você ainda tem <strong>R$ ${restante.toFixed(2).replace('.',',')}</strong> para distribuir.`;
+    }
+    function verificaOrcamento() {
+      const renda = orcamentoLimite;
+      const valores = {
+        moradia: Number(document.getElementById('input-moradia').value),
+        alimentacao: Number(document.getElementById('input-alimentacao').value),
+        lazer: Number(document.getElementById('input-lazer').value),
+        transporte: Number(document.getElementById('input-transporte').value),
+        educacao: Number(document.getElementById('input-educacao').value),
+        poupanca: Number(document.getElementById('input-poupanca').value)
+      };
+      const total = Object.values(valores).reduce((a,b)=>a+b,0);
+      let msg = '';
+      if (total < renda) msg = `Você ainda tem <strong>R$ ${(renda-total).toFixed(2).replace('.',',')}</strong> para distribuir.`;
+      else if (total > renda) msg = `Você ultrapassou a renda em <strong>R$ ${(total-renda).toFixed(2).replace('.',',')}</strong>!`;
+      else msg = "Ótimo! Você distribuiu exatamente sua renda.";
+      let dicas = [];
+      if (valores.moradia+valores.alimentacao > renda*0.6) dicas.push("Tente gastar até 60% com moradia e alimentação.");
+      if (valores.lazer > renda*0.2) dicas.push("Cuidado para não exagerar nos gastos com lazer (máx 20%).");
+      if (valores.poupanca < renda*0.1) dicas.push("Tente poupar pelo menos 10% da renda.");
+      document.getElementById('orcamento-feedback').innerHTML = msg + (dicas.length? "<br>Dicas: "+dicas.join(" ") : "");
+    }
+  </script>
 </body>
 </html>
